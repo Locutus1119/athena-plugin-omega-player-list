@@ -3,6 +3,7 @@ import { WebViewController } from '../../../client/extensions/view2';
 import ViewModel from '../../../client/models/viewModel';
 import { isAnyMenuOpen } from '../../../client/utility/menus';
 import { KeybindController } from '../../../client/events/keyup';
+import * as game from 'natives';
 
 // You should change this to match your Vue Template's ComponentName.
 const view = await WebViewController.get();
@@ -77,17 +78,27 @@ class InternalFunctions implements ViewModel {
 }
 
 let vuePlayerLists: [];
-alt.onServer('OPlayerList:Client:OpenCEF', (playerArray: []) => {
-    vuePlayerLists = playerArray;
+alt.onServer('OPlayerList:Client:OpenCEF', (validPlayers: []) => {
+    vuePlayerLists = validPlayers;
     InternalFunctions.open();
 
-    alt.log(JSON.stringify(vuePlayerLists));
+   // alt.log(JSON.stringify(vuePlayerLists));
 });
 
 
 KeybindController.registerKeybind({
-    key: 115,
+    key: 116,
     singlePress: () => {
         alt.emitServer(`omegaPlayerList:Server:Open`);
     },
+});
+
+alt.on('keydown', (key) => {
+    if (key !== 115) return;
+    alt.emitServer(`omegaPlayerList:Server:Open`);
+});
+
+alt.on('keyup', (key) => {
+    if (key !== 115) return;
+    InternalFunctions.close();
 });

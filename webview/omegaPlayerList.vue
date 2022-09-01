@@ -1,28 +1,29 @@
 <template>
   <div class="wrapper">
       <div class="logo">
-          <img
+          <!-- <img
               src="./omega.png"
               style="position: sticky; margin-top: -2.5%; width: 256px; height: 256px"
               class="mb-4 mt-0"
-          />
-          <p style="top: 10%">The panel displays online players.</p>
+          /> -->
+          <p style="top: 10%">OMEGA RolePlay The panel displays online players.</p>
           <hr />
       </div>
       <div class="content">
           <div class="tableDiv" v-for="(player, index) in validPlayers"  :key="index" >
-              <table>
-                  <tr>
-                      <th>ID <Icon class="green--text mb-2" icon="icon-flask" :size="32" /></th>
-                      <th>Name <Icon class="green--text mb-2" icon="icon-clock" :size="32" /></th>
-                      <th>Ping <Icon class="green--text mb-2" icon="icon-person" :size="32" /></th>
+                        <table>
+                                  <tr>
+                      <td>ID</td>
+                      <td>Name</td>
+                      <td>Ping</td>
                   </tr>
+              </table>
+              <table>
                   <tr>
                       <td>{{ validPlayers[index].id }}</td>
                       <td>{{ validPlayers[index].name }}</td>
-                      <td>{{ validPlayers[index].ping }} <br /></td>
+                      <td>{{ validPlayers[index].ping }}</td>
                   </tr>
-                  <br />
               </table>
           </div>
       </div>
@@ -103,7 +104,8 @@ export default defineComponent({
               this.validPlayers.push({
                   id: entry.id,
                   name: entry.name,
-                  //ping: entry.ping,
+                  ping: entry.ping,
+
                });
                 return;
             });
@@ -112,13 +114,6 @@ export default defineComponent({
         handleKeyPress(e) {
             // Escape Key
             if (e.keyCode === 27 && 'alt' in window) {
-                alt.emit(`${ComponentName}:Close`);
-            }
-        },
-
-        handleKeyPress2(e) {
-            // F4 Key
-            if (e.keyCode === 115 && 'alt' in window) {
                 alt.emit(`${ComponentName}:Close`);
             }
         },
@@ -132,17 +127,19 @@ export default defineComponent({
   top: 10%;
   border-radius: 25px;
   background-color: #000000c9;
-  width: 800px;
-  max-height: 880px;
+  width: 600px;
+  max-height: 900px;
 }
 .logo {
-  margin-top: 3%;
+  margin-top: 1%;
   text-align: center;
+  max-height: 200px;
+
 }
 .footer {
   position: relative;
   text-align: center;
-  height: 6vh;
+  height: 4vh;
   bottom: 1vh;
 }
 .content {
@@ -151,12 +148,12 @@ export default defineComponent({
   position: relative;
   width: 750px;
   max-width: 750px;
-  padding: 25px;
+  padding: 20px;
   overflow-x: hidden;
   overflow: auto;
-  height: 380px;
-  max-height: 380px;
-  font-size: 1.2em;
+  height: 680px;
+  max-height: 680px;
+  font-size: 1.1em;
   font-family: monospace;
 }
 .content::-webkit-scrollbar {
@@ -175,15 +172,13 @@ export default defineComponent({
 table {
   text-align: center;
   font-family: monospace;
-  border-collapse: collapse;
-  width: 750px;
+  width: 600px;
 }
 td,
 th {
   color: white;
-  border: 1px solid #24c3f371;
   text-align: center;
-  padding: 8px;
+  padding: 4px;
   width: 2500px;
   height: 0px;
   max-height: 0px;
