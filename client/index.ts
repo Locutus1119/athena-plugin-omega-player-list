@@ -86,13 +86,6 @@ alt.onServer('OPlayerList:Client:OpenCEF', (validPlayers: []) => {
 });
 
 
-KeybindController.registerKeybind({
-    key: 116,
-    singlePress: () => {
-        alt.emitServer(`omegaPlayerList:Server:Open`);
-    },
-});
-
 alt.on('keydown', (key) => {
     if (key !== 115) return;
     alt.emitServer(`omegaPlayerList:Server:Open`);

@@ -10,14 +10,15 @@
           <hr />
       </div>
       <div class="content">
-          <div class="tableDiv" v-for="(player, index) in validPlayers"  :key="index" >
-                        <table>
+                                <table>
                                   <tr>
                       <td>ID</td>
                       <td>Name</td>
                       <td>Ping</td>
                   </tr>
               </table>
+          <div class="tableDiv" v-for="(player, index) in validPlayers"  :key="index" >
+
               <table>
                   <tr>
                       <td>{{ validPlayers[index].id }}</td>
